@@ -1,0 +1,29 @@
+<app-spinner *ngIf="loading"></app-spinner>
+<div *ngIf="!loading" class="row row-cols-lg-4 row-cols-sm-2">
+  <div *ngFor="let img of listImagenes" class="col mb-4">
+    <div class="card">
+      <img [src]="img.webformatURL" class="card-img-top" [alt]="img.tags" />
+      <div class="card-body">
+        <a
+          [href]="img.largeImageURL"
+          target="_blank"
+          class="btn btn-info btn-block"
+          >Ver Imagen</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="listImagenes.length >= 20">
+  <ul class="pagination d-flex justify-content-center">
+    <li class="page-item" [ngClass]="{ disabled: pag === 1 }">
+      <a (click)="anterior()" class="page-link text-info" href="#">Anterior</a>
+    </li>
+
+    <li class="page-item" [ngClass]="{ disabled: pag === totalPag }">
+      <a (click)="siguiente()" class="page-link text-info" href="#"
+        >Siguiente</a
+      >
+    </li>
+  </ul>
+</div>
